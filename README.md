@@ -14,12 +14,31 @@
 ### 1.实现区块链类
 我们要创建一个 Blockchain 类 ，他的构造函数创建了一个初始化的空列表（要存储我们的区块链），并且另一个存储交易。下面是我们这个类的实例:
 ```
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
-}
+class Blockchain(object):
+    def __init__(self):
+        self.chain = []
+        self.current_transactions = []
+        
+    def new_block(self):
+        # Creates a new Block and adds it to the chain
+        pass
+    
+    def new_transaction(self):
+        # Adds a new transaction to the list of transactions
+        pass
+    
+    @staticmethod
+    def hash(block):
+        # Hashes a Block
+        pass
+
+    @property
+    def last_block(self):
+        # Returns the last Block in the chain
+        pass
 ```
+`Blockchain` 类负责管理链式数据，它会存储交易并且还有添加新的区块到链式数据的`Method`。
+
 ### 2.对区块链进行实例化
 ### 3.使用flask创建API接口
 ### 4.实现节点一致性
