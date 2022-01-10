@@ -64,6 +64,10 @@ block = {
 
 
 ### 3.使用flask创建API接口
+
+这里使用 Python Flask 框架，这是一个轻量 Web 应用框架，它方便将网络请求映射到 Python 函数，现在我们来让 Blockchain 运行在基于 Flask web 上。
+
+
 ### 4.实现节点一致性
 
 ## 注意事项
