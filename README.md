@@ -67,6 +67,12 @@ block = {
 
 这里使用 Python Flask 框架，这是一个轻量 Web 应用框架，它方便将网络请求映射到 Python 函数，现在我们来让 Blockchain 运行在基于 Flask web 上。
 
+我们将创建三个接口：
+
+- /transactions/new 创建一个交易并添加到区块
+- /mine 告诉服务器去挖掘新的区块
+- /chain 返回整个区块链
+
 
 ### 4.实现节点一致性
 
