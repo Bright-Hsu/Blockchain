@@ -27,7 +27,32 @@
 
 尽管hashcash使用SHA-1散列，并且要求160个散列位中的前20个为零，但比特币的工作证明使用两个连续的SHA-256散列，并且最初需要至少256个散列位中的前32个为零。然而，比特币网络定期重置难度级别，以保持每小时6块的平均创建速度。截至2017年8月（区块＃478608），比特币网络已经要求256个哈希位中的前72个必须为零。
 
-## 三.实现
+## 三.工作量证明算法
 工作量证明的算法可以大概描述为：在一个时间段同时有多台服务器对这一段时间的交易进行打包，打包完成后连带区块Header信息一起经过SHA256算法进行运算。在区块头以及奖励交易coinbase里各有一个变量nonce，如果运算的结果不符合难度要求，那么就调整nonce的值继续运算。如果有某台服务器率先计算出了符合难度值的区块，那么它可以广播这个区块。其他服务器验证没问题后就可以添加到现有区块链上，然后大家再一起竞争下一个区块。这个过程也称为挖矿。
 
 比特币网络中任何一个节点，如果想生成一个新的区块并写入区块链，必须解出比特币网络出的工作量证明的迷题。这道题关键的三个要素是工作量证明函数、区块及难度值。工作量证明函数是这道题的计算方法，区块决定了这道题的输入数据，难度值决定了这道题的所需要的计算量。
+
+## 四.算法实现
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+...
+import hashlib
+...
+
+class Blockchain(object):
+    ...
+
+    def proof_of_work(self, last_proof):
+        proof = 0
+        while self.valid_proof(last_proof, proof) is False:
+            proof += 1
+        return proof
+
+    @staticmethod
+    def valid_proof(last_proof, proof):
+        guess = f'{last_proof}{proof}'.encode()
+        guess_hash = hashlib.sha256(guess).hexdigest()
+        return guess_hash[:4] == '0000'
+```
